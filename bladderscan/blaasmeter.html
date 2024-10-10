@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blaas-Meter</title>
+    <link rel="stylesheet" href="css/blaasmeter.css">
+    <link rel="manifest" href="manifest.json" type="application/json">
+    <link rel="icon" href="images/icons/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+    <a id="terug" href="index.html">  ↩  </a>
+    <div id="container">
+        <div id="statusIndicator"></div>
+        <button id="infoBtn" onclick="openInfoScreen()" class="right-top">
+            <span class="material-icons">info</span>       
+        </button>
+        <img id="logo" src="images/Logo VIVES Hogeschool - Smile.png" alt="Logo">
+        <h2>Blaasvolume</h2>
+        <input type="number" id="blaasvolumeInput" placeholder="Voer het blaasvolume in">
+        <button id="submitBtn">Verzenden</button>
+        <label class="switch">
+            <input type="checkbox" id="protocolToggle" onclick="toggleProtocol()">
+            <span class="slider round"></span>
+            <i class="material-icons left-icon">wifi</i>
+            <i class="material-icons right-icon">bluetooth</i>
+        </label>
+    </div>
+
+    <div id="infoScreen">
+        <div id="infoContent">
+          <!-- Inhoud van het info scherm -->
+            <h2>Info</h2>
+            <p>Deze applicatie is gemaakt voor het meten van blaasvolumes. Voer het blaasvolume in en druk op verzenden. Als de slider op de het wifi icoontje word geplaast dan wordt de data gestuurd naar een database dat de microcontroller in het toestel uitleest, als de slider op het bluetooth icoontje staat dan zal  je verbinding maken met de de microcontroller doormiddel van een bluetooth module</p>
+            <p>Het bolletje dat naast het vives logo staat geeft de status van de microcontroller aan </p>
+            <p>Groen = verbinding met de microcontroller</p>
+            <p>Blauw = geen verbinding met de microcontroller</p>
+            <p>Rood = geen verbinding met het internet</p>
+            <p>Deze applicatie is gemaakt door: <br>Studenten Elektronica-ICT 2de jaar<br>Mauro Deceuninck <br>Rune De Corte <br>Stijn Pattyn <br>Arne Bril </p>
+        </div>
+        <button id="closeInfoBtn" onclick="closeInfoScreen()">Sluiten</button>
+    </div>
+
+    
+    <!-- Firebase SDK -->
+    <script defer src="/__/firebase/10.8.1/firebase-app-compat.js"></script>
+    <script defer src="/__/firebase/10.8.1/firebase-auth-compat.js"></script>
+    <script defer src="/__/firebase/10.8.1/firebase-database-compat.js"></script>
+    <script defer src="/__/firebase/init.js"></script>
+    <script src="scripts/blaasmeter.js" defer></script>
+    <script>
+        function openInfoScreen() {
+            var infoScreen = document.getElementById("infoScreen");
+            infoScreen.style.display = "block";
+        }
+        
+        function closeInfoScreen() {
+            var infoScreen = document.getElementById("infoScreen");
+            infoScreen.style.display = "none";
+        }
+
+        window.addEventListener("load", function(){
+        if('serviceWorker' in this.navigator)
+        {
+            navigator.serviceWorker.register("serviceWorker.js")
+            .then((registration) => {
+                console.log("Registered: ", registration);
+            })
+            .catch((error) => console.log("Error: ", error));
+        }
+        else
+            alert("No service worker support in this browser.");
+        });
+    </script>
+</body>
+</html>

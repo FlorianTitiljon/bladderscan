@@ -1,0 +1,227 @@
+body{
+    font-family: 'Arial', sans-serif;
+    padding: 25px;
+}
+
+a{
+    font-size: 34px;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%; 
+    max-width: 500px; 
+    padding: 20px; 
+    background-color: #ffffff; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Voegt een schaduw toe die de border dikker laat lijken */
+    border: 3px solid #e32727; /* Rand van het kader */
+    border-radius: 15px; /* Afronding van de hoeken van het kader */
+    box-sizing: border-box; /* Zorg ervoor dat padding en border niet de totale breedte beïnvloeden */
+    text-align: center; /* Tekst in het midden van het kader */
+    font-family: Arial, sans-serif; /* Lettertype */
+    overflow: hidden; /* Voorkomt dat inhoud buiten de container schuiven */
+  
+    /* Voeg een mediaquery toe voor kleinere schermen */
+    @media only screen and (max-width: 600px) {
+      width: 90%; /* Pas de breedte aan voor kleinere schermen */
+      max-width: 90%; /* Pas de maximale breedte aan voor kleinere schermen */
+      padding: 15px; /* Aanpassen van de padding voor kleinere schermen */
+      border-width: 2px; /* Vermindering van de border-width voor kleine schermen */
+    }
+  }
+  
+  /* Stijl voor het logo */
+  #logo {
+    width: 200px; /* Breedte van het logo */
+    height: auto; /* Hoogte van het logo */
+    margin-bottom: 20px; /* Marge onder het logo */
+  }
+  
+  /* Stijl voor het invoerveld */
+  #glucoseconcentratieInput {
+    width: 100%; /* Breedte van het invoerveld */
+    padding: 10px; /* Ruimte binnen het invoerveld */
+    margin-bottom: 20px; /* Marge onder het invoerveld */
+    font-size: 18px; /* Grootte van de tekst in het invoerveld */
+    border: 2px solid #ccc; /* Rand van het invoerveld */
+    border-radius: 10px; /* Afronding van de hoeken van het invoerveld */
+    box-sizing: border-box; /* Zorgt ervoor dat padding en border niet de totale breedte beïnvloeden */
+  }
+  
+  /* Stijl voor de knop */
+  #submitBtn {
+    background-color: #e32727; /* Achtergrondkleur van de knop */
+    color: #ffffff; /* Tekstkleur van de knop */
+    font-size: 20px; /* Grootte van de tekst */
+    padding: 15px 30px; /* Ruimte binnen de knop */
+    border: none; /* Geen rand om de knop */
+    border-radius: 15px; /* Afronding van de hoeken van de knop */
+    cursor: pointer; /* Muisaanwijzer verandert in een handje bij zweven over de knop */
+    display: block; /* Maakt de knop een block element */
+    margin: 10px auto; /* Centreert de knop horizontaal */
+  }
+  
+  /* Stijl voor de knop bij hover */
+  #submitBtn:hover {
+    background-color: #f74d4d; /* Achtergrondkleur van de knop bij hover */
+  }
+  
+  /* Stijl voor het statusindicator bolletje */
+  #statusIndicator {
+    position: absolute; /* Absoluut gepositioneerd binnen de container */
+    top: 5; /* Bovenrand van de container */
+    left: 5; /* Linkerrand van de container */
+    width: 15px; /* Breedte van het bolletje */
+    height: 15px; /* Hoogte van het bolletje */
+    border-radius: 50%; /* Cirkelvormig */
+    display: inline-block; /* Weergeven als inline-blok */
+    margin: 5px; /* Marge rechts van het bolletje */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Voegt een schaduw toe die de border dikker laat lijken */
+  }
+  
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 90px;
+    height: 34px;
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(56px);
+  }
+  
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  
+  .material-icons {
+    position: relative;
+    font-family: 'Material Icons', sans-serif;
+    font-size: 24px;
+
+  }
+  
+  .left-icon {
+    position: absolute;
+    top: 50%;
+    left: 5px; 
+    transform: translateY(-50%);
+  }
+  
+  .right-icon {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+  }
+  
+  #infoScreen {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    width: 350px; 
+    padding: 20px;
+    background-color: #fff;
+    border: 2px solid #e32727;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    font-family: Arial, sans-serif; 
+  
+    @media only screen and (max-width: 600px) {
+      width: 90%;
+      max-width: 90%;
+      padding: 15px;
+    }
+  }
+  
+  
+   
+  #infoContent {
+    margin-bottom: 10px;
+  }
+   
+  #closeInfoBtn {
+    background-color: #e32727;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+   
+  #closeInfoBtn:hover {
+    background-color: #f74d4d;
+  }
+   
+  .right-top {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  #terug {
+    color: white;
+    background-color: #e32727;
+    border-radius: 10px;
+    Padding: 0px 10px 0px 10px;
+  }
+
+  #terug:hover{
+    background-color: #f74d4d;
+  }
